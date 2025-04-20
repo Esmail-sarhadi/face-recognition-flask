@@ -25,7 +25,7 @@ Set up the project in a few simple steps. You'll need **Python 3.7+** and a virt
 
 1. **Clone the repository**:  
    ```bash
-   git clone https://github.com/yourusername/face-recognition-flask.git
+   git clone https://github.com/esmail-sarhadi/face-recognition-flask.git
    ```
 
 2. **Navigate to the project directory**:  
