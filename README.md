@@ -13,7 +13,7 @@ This project demonstrates a face recognition system using a Flask web server, Op
 ⚙️ Installation
 To set up this project, you need Python 3.7+ and the required dependencies. It's recommended to use a virtual environment.
 
-Clone the repository:git clone https://github.com/yourusername/face-recognition-flask.git
+Clone the repository:git clone https://github.com/Esmail-sarhadi/face_recognition.git
 
 
 Navigate to the project directory:cd face-recognition-flask
