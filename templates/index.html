@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تشخیص چهره پیشرفته</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            background: linear-gradient(to right, #1e3a8a, #3b82f6);
+            min-height: 100vh;
+            font-family: 'Vazir', sans-serif;
+        }
+        @font-face {
+            font-family: 'Vazir';
+            src: url('https://cdn.fontcdn.ir/Font/Persian/Vazir/Vazir.woff') format('woff');
+        }
+        .card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+        .btn {
+            background: linear-gradient(to right, #3b82f6, #1e3a8a);
+            transition: all 0.3s ease;
+        }
+        .btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+    </style>
+</head>
+<body class="text-white">
+    <div class="container mx-auto p-6">
+        <h1 class="text-4xl font-bold text-center mb-8 animate-pulse">تشخیص چهره با وب‌کم</h1>
+        
+        <!-- نمایش آدرس IP -->
+        <div class="text-center mb-6">
+            <p class="text-lg">برای دسترسی از دستگاه‌های دیگر، از آدرس زیر استفاده کنید:</p>
+            <p class="text-xl font-semibold">{{ ip_address }}:5000</p>
+        </div>
+
+        <!-- فرم آپلود -->
+        <div class="card p-6 rounded-lg shadow-lg mb-8">
+            <h2 class="text-2xl font-semibold mb-4">افزودن چهره جدید</h2>
+            <div class="flex flex-col md:flex-row gap-4">
+                <input type="text" id="name" placeholder="نام فرد" class="p-2 rounded bg-gray-800 text-white focus:outline-none focus:ring-2 focus:ring-blue-500">
+                <input type="file" id="file" accept="image/*" class="p-2 rounded bg-gray-800 text-white">
+                <button onclick="uploadFace()" class="btn text-white font-bold py-2 px-4 rounded">آپلود</button>
+            </div>
+            <p id="upload-message" class="mt-4 text-green-400 hidden">چهره با موفقیت اضافه شد!</p>
+            <p id="upload-error" class="mt-4 text-red-400 hidden"></p>
+        </div>
+
+        <!-- نمایش ویدیو -->
+        <div class="card p-6 rounded-lg shadow-lg">
+            <h2 class="text-2xl font-semibold mb-4">پخش زنده وب‌کم</h2>
+            <img src="{{ url_for('video_feed') }}" alt="Webcam Feed" class="w-full rounded-lg shadow-md">
+        </div>
+    </div>
+
+    <script>
+        async function uploadFace() {
+            const name = document.getElementById('name').value;
+            const file = document.getElementById('file').files[0];
+            const message = document.getElementById('upload-message');
+            const error = document.getElementById('upload-error');
+
+            message.classList.add('hidden');
+            error.classList.add('hidden');
+
+            if (!name || !file) {
+                error.textContent = 'لطفاً نام و فایل را وارد کنید.';
+                error.classList.remove('hidden');
+                return;
+            }
+
+            const formData = new FormData();
+            formData.append('name', name);
+            formData.append('file', file);
+
+            try {
+                const response = await fetch('/upload', {
+                    method: 'POST',
+                    body: formData
+                });
+                const result = await response.json();
+                if (response.ok) {
+                    message.textContent = result.success;
+                    message.classList.remove('hidden');
+                    document.getElementById('name').value = '';
+                    document.getElementById('file').value = '';
+                } else {
+                    error.textContent = result.error;
+                    error.classList.remove('hidden');
+                }
+            } catch (err) {
+                error.textContent = 'خطا در ارتباط با سرور.';
+                error.classList.remove('hidden');
+            }
+        }
+    </script>
+</body>
+</html>
