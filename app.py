@@ -67,7 +67,7 @@ def upload_file():
         return jsonify({'success': 'چهره با موفقیت اضافه شد.'}), 200
     return jsonify({'error': 'فرمت فایل مجاز نیست.'}), 400
 
-# پردازش فریم‌های ویدیویی
+# پردازش فریم‌های ویدیویی 
 def generate_frames():
     video_capture = cv2.VideoCapture(0)
     if not video_capture.isOpened():
