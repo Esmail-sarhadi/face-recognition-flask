@@ -13,7 +13,7 @@ app = Flask(__name__)
 UPLOAD_FOLDER = 'known_faces'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 ALLOWED_EXTENSIONS = {'jpg', 'jpeg', 'png'}
-
+ 
 # اطمینان از وجود پوشه known_faces
 if not os.path.exists(UPLOAD_FOLDER):
     os.makedirs(UPLOAD_FOLDER)
