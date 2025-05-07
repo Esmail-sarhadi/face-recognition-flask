@@ -8,7 +8,7 @@ import uuid
 import socket 
 
 app = Flask(__name__)
-
+ 
 # تنظیمات
 UPLOAD_FOLDER = 'known_faces'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
