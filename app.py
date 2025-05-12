@@ -143,7 +143,6 @@ def generate_frames():
 
     video_capture.release()
 
-# استریم ویدیو
 @app.route('/video_feed')
 def video_feed():
     return Response(generate_frames(), mimetype='multipart/x-mixed-replace; boundary=frame')
