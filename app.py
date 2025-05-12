@@ -36,7 +36,7 @@ def load_known_faces():
                 name = os.path.splitext(filename)[0]
                 known_face_names.append(name)
 
-load_known_faces()
+load_known_faces() 
 
 # بررسی پسوند فایل مجاز
 def allowed_file(filename):
