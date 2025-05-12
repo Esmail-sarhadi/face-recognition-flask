@@ -65,7 +65,7 @@ def upload_file():
         file.save(file_path)
         load_known_faces()  # به‌روزرسانی لیست چهره‌ها
         return jsonify({'success': 'چهره با موفقیت اضافه شد.'}), 200
-    return jsonify({'error': 'فرمت فایل مجاز نیست.'}), 400
+    return jsonify({'error': 'فرمت فایل مجاز نیست.'}), 400 
 
 # پردازش فریم‌های ویدیویی 
 def generate_frames():
