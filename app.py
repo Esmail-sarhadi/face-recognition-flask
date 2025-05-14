@@ -40,7 +40,7 @@ def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 # صفحه اصلی
-@app.route('/')
+@app.route('/') 
 def index():
     # پیدا کردن IP محلی برای نمایش به کاربر
     hostname = socket.gethostname()
