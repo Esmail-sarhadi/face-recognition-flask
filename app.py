@@ -1,6 +1,6 @@
 import face_recognition
 import cv2
-import os
+import os 
 import numpy as np
 from flask import Flask, render_template, request, Response, jsonify
 from werkzeug.utils import secure_filename
