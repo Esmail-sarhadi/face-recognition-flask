@@ -25,7 +25,7 @@ def load_known_faces():
     known_face_names = []
     for filename in os.listdir(app.config['UPLOAD_FOLDER']):
         if filename.endswith(tuple(ALLOWED_EXTENSIONS)):
-            image_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+            image_path = os.path.join(app.config['UPLOAD_FOLDER'], filename) 
             image = face_recognition.load_image_file(image_path)
             encodings = face_recognition.face_encodings(image)
             if encodings:
