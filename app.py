@@ -7,7 +7,7 @@ from werkzeug.utils import secure_filename
 import uuid 
 import socket  
 
-app = Flask(__name__)
+app = Flask(__name__) 
  
 UPLOAD_FOLDER = 'known_faces'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
