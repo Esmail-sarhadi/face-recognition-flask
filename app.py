@@ -48,7 +48,7 @@ def index():
     return render_template('index.html', ip_address=ip_address)
 
 # آپلود تصویر و نام
-@app.route('/upload', methods=['POST'])
+@app.route('/upload', methods=['POST']) 
 def upload_file():
     if 'file' not in request.files or 'name' not in request.form:
         return jsonify({'error': 'فایل یا نام وارد نشده است.'}), 400
